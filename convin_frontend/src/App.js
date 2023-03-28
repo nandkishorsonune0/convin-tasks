@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+import Bucket from "./components/Bucket";
+import CardList from "./components/CardList";
+import CardModal from "./components/CardModal";
+import HistoryList from "./components/HistoryList";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <div className="App">
+          <Route exact path="/" component={Bucket} />
+          <Route path="/:bucketId" component={CardList} />
+          <CardModal />
+          <HistoryList />
+        </div>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
