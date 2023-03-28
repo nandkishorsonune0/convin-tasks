@@ -1,7 +1,7 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "./store/store";
 import Bucket from "./components/Bucket";
 import CardList from "./components/CardList";
 import CardModal from "./components/CardModal";
@@ -13,8 +13,10 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <div className="App">
-          <Route exact path="/" component={Bucket} />
-          <Route path="/:bucketId" component={CardList} />
+          <Routes>
+            <Route path="/" element={<Bucket />} />
+            <Route path="/:bucketId" element={<CardList />} />
+          </Routes>
           <CardModal />
           <HistoryList />
         </div>

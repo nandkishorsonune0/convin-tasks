@@ -38,7 +38,11 @@ const CardList = ({ cards, onMoveCard, onDeleteCard }) => {
         >
           <List.Item.Meta
             avatar={<Avatar icon={<i className="fa fa-file-text" />} />}
-            title={<a onClick={() => handleCardClick(card)}>{card.name}</a>}
+            title={
+              card && card.name ? (
+                <a onClick={() => handleCardClick(card)}>{card.name}</a>
+              ) : null
+            }
           />
         </List.Item>
       )}
